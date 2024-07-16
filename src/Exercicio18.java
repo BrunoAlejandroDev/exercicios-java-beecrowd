@@ -21,7 +21,7 @@ public class Exercicio18 {
 
         for (int i = 0; i < cedulas.length; i++) {
             quantidade[i] = valor / cedulas[i]; // verificar quantas cedulas eu vou precisar, considerando cedulas[i]
-            valor %= cedulas[i];
+            valor %= cedulas[i]; // atualizar o valor restante
         }
 
         System.out.println(valorOriginal);
