@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Exercicio21 {
     public static void main(String[] args) {
 
-        Locale.setDefault(Locale.getDefault());
+        Locale.setDefault(Locale.US);
         Scanner input = new Scanner(System.in);
 
         System.out.print("Insira o valor: ");
@@ -21,9 +21,31 @@ public class Exercicio21 {
         double parteDecimal = valorOriginal - valorInteiro;
 
         int[] arrayCedulas = {100, 50, 20, 10, 5, 2};
-        double[] arrayMoedas = {1, 0.50, 0.25, 0.10, 0.05, 0.01};
+        double[] arrayMoedas = {1.00, 0.50, 0.25, 0.10, 0.05, 0.01};
         int[] quantCedulas = new int[arrayCedulas.length];
         int[] quantMoedas = new int[arrayMoedas.length];
 
+        for (int i = 0; i < arrayCedulas.length; i++) {
+            quantCedulas[i] = valorInteiro / arrayCedulas[i];
+            valorInteiro %= arrayCedulas[i];
+        }
+
+        int centavos = (int) Math.round(parteDecimal * 100); // converter a parte decimal para centavos, um valor inteiro
+        centavos += valorInteiro * 100;
+        for (int i = 0; i < arrayMoedas.length; i++) {
+            quantMoedas[i] = centavos / (int) arrayMoedas[i] * 100;
+            centavos %= (int) arrayMoedas[i] * 100;
+        }
+
+        System.out.println(valorOriginal);
+        System.out.println("NOTAS:");
+        for (int i = 0; i < arrayCedulas.length; i++) {
+            System.out.printf("%d nota(s) de R$ %.2f%n", quantCedulas[i], (double) arrayCedulas[i]);
+        }
+
+        System.out.println("MOEDAS:");
+        for (int i = 0; i < arrayMoedas.length; i++) {
+            System.out.printf("%d moeda(s) de R$ %.2f%n", quantMoedas[i], arrayMoedas[i]);
+        }
     }
 }
