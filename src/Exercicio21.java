@@ -31,9 +31,9 @@ public class Exercicio21 {
         }
 
         int centavos = (int) Math.round(parteDecimal * 100); // converter a parte decimal para centavos, um valor inteiro
-        centavos += valorInteiro * 100;
+        //centavos += valorInteiro * 100;
         for (int i = 0; i < arrayMoedas.length; i++) {
-            quantMoedas[i] = centavos / (int) arrayMoedas[i] * 100;
+            quantMoedas[i] = (int) (centavos / arrayMoedas[i] * 100);
             centavos %= (int) arrayMoedas[i] * 100;
         }
 
